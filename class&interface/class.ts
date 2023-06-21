@@ -1,11 +1,16 @@
 class Department {
+  // private id: string;
+
   // デフォルトはパブリック。publicの指定は不要(class外からアクセス可能)
-  public name: string;
+  // readonlyを付与することで読み取り専用にすることができる
+  public readonly name: string;
 
   // class内でしかアクセスできなくなる
   private employes: string[] = [];
 
-  constructor(name: string) {
+  // プロパティ初期化のショートカット：id
+  // コンストラクタの引数内にアクセス修飾子を入れることで、定義を省略することができる
+  constructor(private id: string, name: string) {
     this.name = name;
   }
 
@@ -25,7 +30,7 @@ class Department {
   }
 }
 
-const accounting = new Department("Accounting");
+const accounting = new Department("1", "Accounting");
 accounting.describe();
 
 accounting.addEmployee("Max");
