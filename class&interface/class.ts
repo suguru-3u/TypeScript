@@ -39,3 +39,13 @@ accounting.addEmployee("Mamu");
 accounting.printEmplyoleeInfo(); // Max,Mamus
 
 // accounting.employes[2] = "taro";
+
+class ITDepartMent extends Department {
+  admins: string[];
+  constructor(id: string, admins: string[]) {
+    super(id, "IT");
+    this.admins = admins;
+  }
+}
+
+const itAccounting = new ITDepartMent("d1", ["Max"]);
