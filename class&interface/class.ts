@@ -5,8 +5,8 @@ class Department {
   // readonlyを付与することで読み取り専用にすることができる
   public readonly name: string;
 
-  // class内でしかアクセスできなくなる
-  private employes: string[] = [];
+  // class内と継承したクラスは使用することができる
+  protected employes: string[] = [];
 
   // プロパティ初期化のショートカット：id
   // コンストラクタの引数内にアクセス修飾子を入れることで、定義を省略することができる
@@ -28,6 +28,8 @@ class Department {
   printEmplyoleeInfo() {
     console.log(this.employes);
   }
+
+  addEmplypp(name: string) {}
 }
 
 const accounting = new Department("1", "Accounting");
@@ -45,6 +47,13 @@ class ITDepartMent extends Department {
   constructor(id: string, admins: string[]) {
     super(id, "IT");
     this.admins = admins;
+  }
+
+  // メソッドをオーバーライドする場合は引数は合わせる必要がある
+  addEmployee(employee: string) {
+    if (employee === "Max") {
+      this.employes.push(employee);
+    }
   }
 }
 
