@@ -43,18 +43,33 @@ accounting.printEmplyoleeInfo(); // Max,Mamus
 // accounting.employes[2] = "taro";
 
 class ITDepartMent extends Department {
-  admins: string[];
-  constructor(id: string, admins: string[]) {
+  private lastReport: string;
+
+  // プロパティのgetterメソッド
+  // 取得することに特化しているので、複雑なロジックを入れることが可能
+  get mostRecentReport() {
+    return this.lastReport;
+  }
+
+  // プロパティのsetterメソッド
+  // セットすることに特化しているので、複雑なロジックを入れることが可能
+  set mostRecentReport(report: string) {
+    this.mostRecentReport = report;
+  }
+
+  constructor(id: string, lastReports: string[]) {
     super(id, "IT");
-    this.admins = admins;
+    this.lastReport = lastReports[0];
   }
 
   // メソッドをオーバーライドする場合は引数は合わせる必要がある
   addEmployee(employee: string) {
     if (employee === "Max") {
       this.employes.push(employee);
+      this.lastReport = employee;
     }
   }
 }
 
 const itAccounting = new ITDepartMent("d1", ["Max"]);
+console.log(itAccounting.mostRecentReport);
