@@ -80,3 +80,26 @@ const testStatic = ITDepartMent.test;
 
 const itAccounting = new ITDepartMent("d1", ["Max"]);
 console.log(itAccounting.mostRecentReport);
+
+class Test {
+  private name: string;
+
+  // このクラスの情報を保持するようにする
+  private static instance: Test;
+  // シングルトーンパターン(constructorにprivateをつける)
+  // インスタンスを複数作れないようにする
+  private constructor() {
+    this.name = "田中";
+  }
+
+  // インスタンスを返却する
+  static getInstnce() {
+    if (Test.instance) {
+      return this.instance;
+    }
+    this.instance = new Test();
+    return this.instance;
+  }
+}
+
+const accountTest = Test.getInstnce();
