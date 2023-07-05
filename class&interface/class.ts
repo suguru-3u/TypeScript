@@ -6,7 +6,7 @@ abstract class Department {
   // readonlyを付与することで読み取り専用にすることができる
   public readonly name: string;
 
-  // class内と継承したクラスは使用することができる
+  // protectedは、class内と継承したクラスは使用することができる
   protected employes: string[] = [];
 
   // プロパティ初期化のショートカット：id
@@ -33,16 +33,7 @@ abstract class Department {
   addEmplypp(name: string) {}
 }
 
-// const accounting = new Department("1", "");
-// accounting.describe();
-
-// accounting.addEmployee("Max");
-// accounting.addEmployee("Mamu");
-
-// accounting.printEmplyoleeInfo(); // Max,Mamus
-
-// accounting.employes[2] = "taro";
-
+// extendsを使用しクラスを継承している
 class ITDepartMent extends Department {
   private lastReport: string;
 
@@ -102,4 +93,5 @@ class Test {
   }
 }
 
+// newを使用せずにインスタンスを作成するので、インスタンスは常に1つ。
 const accountTest = Test.getInstnce();
