@@ -79,11 +79,51 @@ function useVehicle(vehicle: Vehicle) {
 
 /**
  * 判別されるUnion型
+ * 型に判別できる情報を記載して、型判別を行えるようにしている
  */
+
+interface Bird {
+  // birdという文字列のみ許可されるリテラル型
+  type: "bird";
+  flyingSpeed: number;
+}
+
+interface Horse {
+  // horseという文字列のみ許可されるリテラル型
+  type: "horse";
+  runnningSpeed: number;
+}
+
+type Animal = Bird | Horse;
+
+function moveAnimal(animal: Animal) {
+  if (animal.type === "bird") {
+    console.log(animal.flyingSpeed);
+  }
+  if (animal.type === "horse") {
+    console.log(animal.runnningSpeed);
+  }
+}
 
 /**
  * 型キャスト
+ * 書き方が2通り存在する
+ * 型を強制的に宣言し、TypeScriptに型を認識させる方法
  */
+
+// const userInputElement = <HTMLInputElement>document.getElementById(
+//   "use-input"
+// );
+
+// const userInputElement = document.getElementById(
+//   "use-input"
+// ) as HTMLInputElement;
+
+const userInputElement = document.getElementById("use-input");
+
+if (userInputElement) {
+  (userInputElement as HTMLInputElement).value = "こんにちわ";
+}
 
 /**
  * 関数オーバーロード
