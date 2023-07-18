@@ -127,4 +127,49 @@ if (userInputElement) {
 
 /**
  * 関数オーバーロード
+ * 型推論が正しく動作しない場合に役に立つ
  */
+
+// 対象の関数の前に関数の型を定義する
+function add4(a: number, b: number): number;
+function add4(a: string, b: string): string;
+
+// ↑で型を定義しているので、戻り値の方がはっきりとなる
+function add4(a: Combineble, b: Combineble) {
+  // 引数の型によって処理を変更している
+  if (typeof a === "string" || typeof b === "string") {
+    return a.toString() + b.toString();
+  }
+  return a + b;
+}
+
+const result = add4("Hello", "こんにちわ");
+
+/**
+ * オプショナルチェーン
+ * プロパティが存在しているのかわからない場合に使用できる
+ * 存在しているか怪しいプロパティの前に[?]を置き、undefindやnullの場合アクセスしない
+ */
+
+const fetchedUserData = {
+  id: "u1",
+  name: "user1",
+  job: {
+    title: "Developer",
+    description: "TypeScript",
+  },
+};
+
+console.log(fetchedUserData?.job?.title);
+
+/**
+ * NULL合体演算子
+ */
+
+const userinpt = null;
+
+// 論理演算子（空文字や0もfalse判定されてしまう）
+const storeData = userinpt || "DEFAULT";
+
+// userinptがnullかundefindだった場合のみfalse判定される
+const storeData2 = userinpt ?? "DEFAULT";
