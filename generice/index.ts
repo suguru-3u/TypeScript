@@ -55,3 +55,33 @@ function countAndDescribe<T extends Length>(element: T): [T, string] {
 }
 
 console.log(countAndDescribe("お疲れ様"));
+
+// keyofの制約
+// Tはオブジェクト、UはTのオブジェクトのプロパティのみの制約をしている。
+function keyofConvert<T extends object, U extends keyof T>(obj: T, key: U) {
+  return "value " + obj[key];
+}
+keyofConvert({ name: "Max" }, "name");
+
+class DataStorage<T extends string | number | boolean> {
+  private data: T[] = [];
+
+  addItem(item: T) {
+    this.data.push(item);
+  }
+
+  removeItem(item: T) {
+    if (this.data.indexOf(item) === item) {
+      this.data.splice(this.data.indexOf(item), 1);
+    }
+  }
+
+  getItem() {
+    return [...this.data];
+  }
+}
+
+// 文字列のクラスを生成
+const textStorage = new DataStorage<string>();
+textStorage.addItem("Hello");
+// textStorage.addItem(1); 数字なのでエラー
