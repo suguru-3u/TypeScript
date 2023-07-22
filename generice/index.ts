@@ -1,5 +1,6 @@
 /**
  * ジェネリクスはTSのみの機能
+ * https://typescript-jp.gitbook.io/deep-dive/type-system/generics
  */
 
 // ジェネリックは型補完を行うことができる。
@@ -85,3 +86,28 @@ class DataStorage<T extends string | number | boolean> {
 const textStorage = new DataStorage<string>();
 textStorage.addItem("Hello");
 // textStorage.addItem(1); 数字なのでエラー
+
+// Geniric型のユーティリティ（Partial型とReadonly）
+interface CourseGoel {
+  title: string;
+  description: string;
+  completeUtil: Date;
+}
+
+function createCourseGoel(
+  title: string,
+  description: string,
+  completeUtil: Date
+): CourseGoel {
+  // Partialはジェネリックの型を指定した際に全てのプロパティをオプショナルにするもの
+  let courseGoal: Partial<CourseGoel> = {};
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUtil = completeUtil;
+  // 型キャストして返却する
+  return courseGoal as CourseGoel;
+}
+
+// 文字列配列の読み取り専用を宣言している
+const names2: Readonly<string[]> = ["Max", "Anna"];
+// names2.push("Manu"); エラーが発生
