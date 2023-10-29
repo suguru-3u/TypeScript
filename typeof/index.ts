@@ -52,3 +52,8 @@ function clonePerson(person: typeof jsonData3): typeof jsonData3 {
 }
 
 const clonedPerson = clonePerson(jsonData3);
+
+// 使い方③
+// 配列の値をString Literal Typesとして使うケース
+const size = ["small", "medium", "large"] as const; // readonly ["small", "medium", "large"]
+type Size = (typeof size)[number]; // 'small' | 'medium' | 'large'
