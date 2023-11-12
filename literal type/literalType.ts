@@ -6,7 +6,7 @@
 function conbine2(
   input1: string | number,
   input2: string | number,
-  resultConvertion: "as-number" | "as-text"
+  resultConvertion: "as-number" | "as-text" // literal型
 ) {
   if (
     (typeof input1 === "number" && typeof input2 === "number") ||
@@ -19,3 +19,6 @@ function conbine2(
 
 console.log("関数実行結果", conbine2(2, 3, "as-number"));
 console.log("関数実行結果", conbine2("田中", "圭", "as-text"));
+
+// 他にはこのようにconstの再代入不可の変数に詳細な型定義を行なっている場合も該当する
+const booleanLiteral: true = true;
